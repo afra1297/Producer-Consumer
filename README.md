@@ -38,10 +38,10 @@ Producer 2 WEATHER 0
 ```
 Each producer sends its information to the Dispatcher (introduced below) via its own private queue. Each producer's private queue is shared between the Producer and the Dispatcher. Each of the string products is inserted by the Producer into its 'producer queue'. After inserting all the products, the Producer sends a 'DONE' string through its queue.
 
-## Dispatcher
+### Dispatcher
 The Dispatcher continuously accepts messages from the producers' queues. It scans the producers' queues using a Round Robin algorithm. The Dispatcher does not block when the queues are empty. Each message is "sorted" by the Dispatcher and inserted into one of the Dispatcher queues, which include strings of a single type. When the Dispatcher receives a "DONE" message from all producers, it sends a "DONE" message through each of its queues.
 
-- SPORTS: Inserted into the "S dispatcher queue"
+- *SPORTS*: Inserted into the "S dispatcher queue"
 - NEWS: Inserted into the "N dispatcher queue"
 - WEATHER: Inserted into the "W dispatcher queue"
  
