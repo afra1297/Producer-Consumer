@@ -15,7 +15,6 @@ Each producer creates several strings in the following format:
 ```bash
 “producer <i> <type> <j>”
 ```
-
-- <i>: Producer's ID
-- <type>: A random type chosen from SPORTS, NEWS, WEATHER
-- <j>: The number of strings of type <type> this producer has already produced
+- ```<i>```: Producer's ID
+- ```<type>```: A random type chosen from SPORTS, NEWS, WEATHER
+- ```<j>```: The number of strings of type <type> this producer has already produced
