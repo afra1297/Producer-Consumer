@@ -124,15 +124,17 @@ To compile and run the program, do the following:
 
 ## Running the Tests
 The tests are located in the ```Tests``` folder and include 4 configuration files, a shell script to check message counts, and a Python script to automate the testing process.
-1. Navigate to the Tests directory: The shell script checks the message counts.
-```cd Tests```
-2. Running the Shell Script:
+1. **Navigate to the Tests directory**: The shell script checks the message counts.  
+```bash
+cd Tests
 ```
+2. **Running the Shell Script**:  
+```bash
 chmod +x message_count_tester.sh
 ./message_count_tester.sh
 ```
-3. Running the Python Test Script: The Python script automates the testing process and checks the program's behavior under various configurations.
-```
+3. **Running the Python Test Script**: The Python script automates the testing process and checks the program's behavior under various configurations.  
+```bash
 python3 prodcons_tester.py
 ```
 
