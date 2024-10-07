@@ -113,9 +113,9 @@ Co-Editor queue size = 17
 
 ## Compilation and Execution
 To compile and run the program, do the following:
-1. Compilation:
+1. Compilation:  
    ```make```
-2. Execution
+2. Execution  
    ```./ProdConsOut config.txt```
 
 ## Running the Tests
