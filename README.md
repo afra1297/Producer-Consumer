@@ -18,3 +18,13 @@ Each producer creates several strings in the following format:
 - ```<i>```: Producer's ID
 - ```<type>```: A random type chosen from SPORTS, NEWS, WEATHER
 - ```<j>```: The number of strings of type <type> this producer has already produced
+
+The number of products a producer makes is specified via its constructor.
+
+For example, if producer 2 needs to create 3 strings, a possible outcome could be:
+```
+Producer 2 SPORTS 0
+Producer 2 SPORTS 1
+Producer 2 WEATHER 0
+```
+Each producer sends its information to the Dispatcher (introduced below) via its own private queue. Each producer's private queue is shared between the Producer and the Dispatcher. Each of the string products is inserted by the Producer into its 'producer queue'. After inserting all the products, the Producer sends a 'DONE' string through its queue.
