@@ -55,3 +55,65 @@ The Producer queues in this assignment and the Co-Editors' shared queue are a bo
 - char * remove (): Removes the first object from the bounded buffer and returns it to the user.
 
 You must implement a thread-safe bounded buffer. To do this, you will be provided with a binary semaphore (mutex) and need to create a counting semaphore with two binary semaphores as studied in class. The implementation of a 'bounded buffer' synchronization mechanism, with two counting semaphores and one binary semaphore, was presented in class.
+
+## Configuration File
+The configuration file should have the following format:
+```
+PRODUCER 1
+[number of products]
+queue size = [size]
+
+PRODUCER 2
+[number of products]
+queue size = [size]
+
+...
+...
+
+PRODUCER n
+[number of products]
+queue size = [size]
+
+Co-Editor queue size = [size]
+```
+
+For example, the following are legal configuration files:
+```
+PRODUCER 1
+30
+queue size = 5
+
+PRODUCER 2
+25
+queue size = 3
+
+PRODUCER 3
+16
+queue size = 30
+
+Co-Editor queue size = 17
+```
+
+## Compilation and Execution
+To compile and run the program, follow these steps:
+1. Compilation:
+   ```make```
+2. Execution
+   ```./ProdConsOut config.txt```
+
+## Running the Tests
+The tests are located in the ```Tests``` folder and include 4 configuration files, a shell script to check message counts, and a Python script to automate the testing process.
+1. Navigate to the Tests directory: The shell script checks the message counts.
+```cd Tests```
+2. Running the Shell Script:
+```
+chmod +x message_count_tester.sh
+./message_count_tester.sh
+```
+3. Running the Python Test Script: The Python script automates the testing process and checks the program's behavior under various configurations.
+```
+python3 prodcons_tester.py
+```
+
+## Output Files
+For each test configuration, the script generates an output file containing the results of the program's execution. These files are named according to the configuration (e.g., ```config1_output.txt```, ```config2_output.txt```). Additionally, a summary of the test results is written to ```test_results.txt```, which includes pass/fail statuses and any encountered errors.
