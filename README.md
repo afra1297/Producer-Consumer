@@ -114,9 +114,13 @@ Co-Editor queue size = 17
 ## Compilation and Execution
 To compile and run the program, do the following:
 1. Compilation:  
-   ```make```
+   ```bash
+   make
+   ```
 2. Execution  
-   ```./ProdConsOut config.txt```
+   ```bash
+   ./ProdConsOut config.txt
+   ```
 
 ## Running the Tests
 The tests are located in the ```Tests``` folder and include 4 configuration files, a shell script to check message counts, and a Python script to automate the testing process.
