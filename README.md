@@ -46,3 +46,11 @@ The Screen Manager displays the strings it receives via the Co-Editors' queue to
 The system should be implemented according to the following chart:
 ![image](https://github.com/user-attachments/assets/84ef073a-6738-43d6-9b34-ca0097f7c84d)
 Three producers communicate with the dispatcher via their Producer queues. The Dispatcher communicates with the Co-Editors via three queues corresponding to the three types of messages. The Co-Editors communicate with the Screen-Manager via a single shared queue, and the Screen-Manager displays the system's output.
+
+## Bounded Buffer
+The Producer queues in this assignment and the Co-Editors' shared queue are a bounded buffer that supports the following operations:
+
+- Bounded_Buffer (int size): Constructor that creates a new bounded buffer with size places to store objects.
+- void insert (char * s): Inserts a new object into the bounded buffer.
+- char * remove (): Removes the first object from the bounded buffer and returns it to the user.
+You must implement a thread-safe bounded buffer. To do this, you will be provided with a binary semaphore (mutex) and need to create a counting semaphore with two binary semaphores as studied in class. The implementation of a 'bounded buffer' synchronization mechanism, with two counting semaphores and one binary semaphore, was presented in class.
