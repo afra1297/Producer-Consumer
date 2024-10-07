@@ -122,7 +122,7 @@ To compile and run the program, do the following:
    ./ProdConsOut config.txt
    ```
 
-## Running the Tests
+## Running Tests
 The tests are located in the ```Tests``` folder and include 4 configuration files, a shell script to check message counts, and a Python script to automate the testing process.
 1. **Navigate to the Tests directory**: The shell script checks the message counts.  
 ```bash
