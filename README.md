@@ -10,15 +10,18 @@ The aim of this assignment is to develop skills in concurrent programming and sy
 - [Configuration File](#configuration-file)
 - [Compilation and Execution](#compilation-and-execution)
 - [Running Tests](#running-tests)
+  
 ## General Description
 This project simulates a news broadcasting system. Different types of stories (Sports, News, Weather) are produced, and the system sorts and displays them to the public.
 This assignment helps to understand the performance impact of various synchronization constructs under different loads.
 In this assignment, 'news stories' are represented by simple strings that should be displayed on the screen in the order they arrive.
 
 ## System Components
-## Producer
+The system consists of the following active participants:
+
+### Producer
 Each producer creates several strings in the following format:
-```bash
+```
 “producer <i> <type> <j>”
 ```
 - ```<i>```: Producer's ID
