@@ -13,7 +13,8 @@ In the scenario you should implement, there are 4 types of active participants:
 ## Producer
 Each producer creates several strings in the following format:
 ```bash
-“producer <i> <type> <j>” ```
+“producer <i> <type> <j>”
+```
 
 - <i>: Producer's ID
 - <type>: A random type chosen from SPORTS, NEWS, WEATHER
