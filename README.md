@@ -1,12 +1,19 @@
 # Producer-Consumer: Concurrent Programming and Synchronization Mechanisms Assignment
+This project is a simulation of a news broadcasting system implemented using concurrent programming and synchronization mechanisms in C.
+The aim of this assignment is to develop skills in concurrent programming and synchronization mechanisms.
 
+## Table of contents
+- [General Description](#general-description)
+- [System Components](#system-components)
+- [System Design](#system-design)
+- [Bounded Buffer](#bounded-buffer)
+- [Configuration File](#configuration-file)
+- [Compilation and Execution](#compilation-and-execution)
+- [Running Tests](#running-tests)
+- 
 ## General Description
-The aim of this assignment is to develop skills in concurrent programming and synchronization mechanisms. It's crucial to design the solution carefully before starting the implementation. Otherwise, the implementation may be very challenging.
-
 This scenario also helps understand the performance impact of various synchronization constructs under different loads.
-
 The scenario we're simulating is news broadcasting. Different types of stories are produced, and the system sorts and displays them to the public.
-
 In this assignment, 'news stories' are represented by simple strings that should be displayed on the screen in the order they arrive.
 
 In the scenario you should implement, there are 4 types of active participants:
