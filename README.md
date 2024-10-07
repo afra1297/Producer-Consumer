@@ -28,3 +28,21 @@ Producer 2 SPORTS 1
 Producer 2 WEATHER 0
 ```
 Each producer sends its information to the Dispatcher (introduced below) via its own private queue. Each producer's private queue is shared between the Producer and the Dispatcher. Each of the string products is inserted by the Producer into its 'producer queue'. After inserting all the products, the Producer sends a 'DONE' string through its queue.
+
+## Dispatcher
+The Dispatcher continuously accepts messages from the producers' queues. It scans the producers' queues using a Round Robin algorithm. The Dispatcher does not block when the queues are empty. Each message is "sorted" by the Dispatcher and inserted into one of the Dispatcher queues, which include strings of a single type. When the Dispatcher receives a "DONE" message from all producers, it sends a "DONE" message through each of its queues.
+
+- SPORTS: Inserted into the "S dispatcher queue"
+- NEWS: Inserted into the "N dispatcher queue"
+- WEATHER: Inserted into the "W dispatcher queue"
+ 
+## Co-Editors
+For each type of possible message, there is a Co-Editor that receives the message through the Dispatcher’s queue, "edits" it, and passes it to the screen manager via a single shared queue. The editing process is simulated by the Co-Editors by blocking for one-tenth (0.1) of a second. When a Co-Editor receives a "DONE" message, it passes it without waiting through the shared queue.
+
+## Screen Manager
+The Screen Manager displays the strings it receives via the Co-Editors' queue to the screen (standard output). After printing all messages to the screen and receiving three "DONE" messages, the Screen Manager displays a 'DONE' statement.
+
+## System Design
+The system should be implemented according to the following chart:
+![image](https://github.com/user-attachments/assets/84ef073a-6738-43d6-9b34-ca0097f7c84d)
+Three producers communicate with the dispatcher via their Producer queues. The Dispatcher communicates with the Co-Editors via three queues corresponding to the three types of messages. The Co-Editors communicate with the Screen-Manager via a single shared queue, and the Screen-Manager displays the system's output.
