@@ -10,7 +10,6 @@ The aim of this assignment is to develop skills in concurrent programming and sy
 - [Configuration File](#configuration-file)
 - [Compilation and Execution](#compilation-and-execution)
 - [Running Tests](#running-tests)
-- 
 ## General Description
 This scenario also helps understand the performance impact of various synchronization constructs under different loads.
 The scenario we're simulating is news broadcasting. Different types of stories are produced, and the system sorts and displays them to the public.
