@@ -7,6 +7,7 @@ The aim of this assignment is to develop skills in concurrent programming and sy
 - [System Components](#system-components)
 - [System Design](#system-design)
 - [Bounded Buffer](#bounded-buffer)
+- [Unbounded Buffer](#unbounded-buffer)
 - [Configuration File](#configuration-file)
 - [Compilation and Execution](#compilation-and-execution)
 - [Running Tests](#running-tests)
@@ -41,30 +42,37 @@ Each producer sends its information to the Dispatcher (introduced below) via its
 ### Dispatcher
 The Dispatcher continuously accepts messages from the producers' queues. It scans the producers' queues using a Round Robin algorithm. The Dispatcher does not block when the queues are empty. Each message is "sorted" by the Dispatcher and inserted into one of the Dispatcher queues, which include strings of a single type. When the Dispatcher receives a "DONE" message from all producers, it sends a "DONE" message through each of its queues.
 
-- *SPORTS*: Inserted into the "S dispatcher queue"
-- NEWS: Inserted into the "N dispatcher queue"
-- WEATHER: Inserted into the "W dispatcher queue"
+- **SPORTS**: Inserted into the "S dispatcher queue"
+- **NEWS**: Inserted into the "N dispatcher queue"
+- **WEATHER**: Inserted into the "W dispatcher queue"
  
-## Co-Editors
+### Co-Editors
 For each type of possible message, there is a Co-Editor that receives the message through the Dispatcher’s queue, "edits" it, and passes it to the screen manager via a single shared queue. The editing process is simulated by the Co-Editors by blocking for one-tenth (0.1) of a second. When a Co-Editor receives a "DONE" message, it passes it without waiting through the shared queue.
 
-## Screen Manager
+### Screen Manager
 The Screen Manager displays the strings it receives via the Co-Editors' queue to the screen (standard output). After printing all messages to the screen and receiving three "DONE" messages, the Screen Manager displays a 'DONE' statement.
 
 ## System Design
-The system should be implemented according to the following chart:
+The system is implemented according to the following chart:
 ![image](https://github.com/user-attachments/assets/84ef073a-6738-43d6-9b34-ca0097f7c84d)
+
 Three producers communicate with the dispatcher via their Producer queues. The Dispatcher communicates with the Co-Editors via three queues corresponding to the three types of messages. The Co-Editors communicate with the Screen-Manager via a single shared queue, and the Screen-Manager displays the system's output.
 
 ## Bounded Buffer
-The Producer queues in this assignment and the Co-Editors' shared queue are a bounded buffer that supports the following operations:
+The Producer queues and the Co-Editor's shared queue are a bounded buffer that supports the following operations:
 
-- Bounded_Buffer (int size): Constructor that creates a new bounded buffer with size places to store objects.
-- void insert (char * s): Inserts a new object into the bounded buffer.
-- char * remove (): Removes the first object from the bounded buffer and returns it to the user.
+- ```BoundedBuffer* boundedCreate(int size, sem_t *mutex, sem_t *full, sem_t *empty)```: Constructor that creates a new bounded buffer with 'size' places to store objects.
+- ```void boundedInsert(BoundedBuffer *b_buff, char *new_item)```: Inserts a new object into the bounded buffer.
+- ```char *boundedRemove(BoundedBuffer *b_buff)```: Removes the first object from the bounded buffer and returns it to the user.
 
-You must implement a thread-safe bounded buffer. To do this, you will be provided with a binary semaphore (mutex) and need to create a counting semaphore with two binary semaphores as studied in class. The implementation of a 'bounded buffer' synchronization mechanism, with two counting semaphores and one binary semaphore, was presented in class.
+The bounded buffer is thread-safe. To do this, I used a combination of a binary semaphore (mutex) and a counting semaphore implemented with two binary semaphores. This ensures thread-safe access to the shared buffer by multiple producers and consumers.
 
+## Unbounded Buffer
+The Dispatcher queues are unbounded buffers that support the following operations:
+- ```UnboundedBuffer* unboundedCreate(sem_t *mutex, sem_t *full)```:  Constructor that creates a new unbounded buffer.
+- ```void unboundedInsert(UnboundedBuffer *u_buff, char *new_item)```: Inserts a new object into the unbounded buffer.
+- ```char *unboundedRemove(UnboundedBuffer *u_buff)```: Removes the first object from the unbounded buffer and returns it to the user.
+  
 ## Configuration File
 The configuration file should have the following format:
 ```
@@ -104,7 +112,7 @@ Co-Editor queue size = 17
 ```
 
 ## Compilation and Execution
-To compile and run the program, follow these steps:
+To compile and run the program, do the following:
 1. Compilation:
    ```make```
 2. Execution
@@ -124,5 +132,5 @@ chmod +x message_count_tester.sh
 python3 prodcons_tester.py
 ```
 
-## Output Files
+### Output Files
 For each test configuration, the script generates an output file containing the results of the program's execution. These files are named according to the configuration (e.g., ```config1_output.txt```, ```config2_output.txt```). Additionally, a summary of the test results is written to ```test_results.txt```, which includes pass/fail statuses and any encountered errors.
